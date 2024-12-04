@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Interactive Photo Gallery</title>
+    <style>
+        #image {
+            width: 400px;
+            height: 300px;
+            background-color: #f0f0f0;
+            text-align: center;
+            line-height: 300px;
+            color: #555;
+            border: 1px solid #ccc;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 100px;
+            height: 75px;
+            margin: 5px;
+            cursor: pointer;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .gallery img:hover {
+            border-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="image">
+        Hover over an image below to display here.
+    </div>
+
+    <div class="gallery">
+        <img src="image1.jpg" alt="A serene beach during sunset" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()" tabindex="0">
+        <img src="image2.jpg" alt="Mountain peak under blue sky" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()" tabindex="0">
+        <img src="image3.jpg" alt="Colorful autumn forest" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()" tabindex="0">
+        <img src="image4.jpg" alt="Crystal clear lake surrounded by trees" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()" tabindex="0">
+        <img src="image5.jpg" alt="Desert landscape with sand dunes" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()" tabindex="0">
+        <img src="image6.jpg" alt="Sunrise over a snowy mountain range" onmouseover="upDate(this)" onmouseout="undo()" onfocus="upDate(this)" onblur="undo()" tabindex="0">
+    </div>
+
+    <script>
+        window.onload = function() {
+            const images = document.querySelectorAll('img');
+            images.forEach((image) => {
+                image.setAttribute('tabindex', '0');
+            });
+            console.log("All images are now tabbable.");
+        };
+
+        function upDate(previewPic) {
+            document.getElementById('image').textContent = previewPic.alt;
+            document.getElementById('image').style.backgroundImage = `url('${previewPic.src}')`;
+        }
+
+        function undo() {
+            document.getElementById('image').style.backgroundImage = "url('')";
+            document.getElementById('image').textContent = "Hover over an image below to display here.";
+        }
+    </script>
+
+</body>
+</html>
